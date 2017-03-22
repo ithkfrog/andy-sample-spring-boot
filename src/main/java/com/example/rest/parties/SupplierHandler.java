@@ -1,6 +1,6 @@
 package com.example.rest.parties;
 
-import com.example.presistence.SupplierPersistence;
+import com.example.presistence.SupplierCurdRepository;
 import com.example.rest.handler.RESTHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SupplierHandler {
 
     @Autowired
-    private SupplierPersistence supplierPersistence;
+    private SupplierCurdRepository supplierCurdRepository;
 
     @RequestMapping("/parties/suppliers")
     public ResponseEntity<?> suppliers(@RequestParam(value="supplierName", required=false) String supplierName) {
@@ -28,9 +28,9 @@ public class SupplierHandler {
 
         if (!StringUtils.isEmpty(supplierName)) {
 
-            response = supplierPersistence.findBySupplierNameContainsAllIgnoreCase(supplierName);
+            response = supplierCurdRepository.findByNameContainsAllIgnoreCase(supplierName);
         } else {
-            response = supplierPersistence.findAll();
+            response = supplierCurdRepository.findAll();
         }
 
         return RESTHandler.buildOK(response);
@@ -41,7 +41,7 @@ public class SupplierHandler {
     public ResponseEntity<?> supplier(
             @PathVariable(value="supplierId") Long supplierId) {
 
-        Object response = supplierPersistence.findBySupplierId(supplierId);
+        Object response = supplierCurdRepository.findById(supplierId);
 
         return RESTHandler.buildOK(response);
     }

@@ -8,11 +8,11 @@ import java.util.List;
 /**
  * @author Andy Chau on 14/03/17.
  */
-public interface SupplierPersistence extends CrudRepository<Supplier, Long> {
+public interface SupplierCurdRepository extends CrudRepository<Supplier, Long> {
 
     List<Supplier> findAll();
 
-    List<Supplier> findBySupplierNameContainsAllIgnoreCase(String supplierName);
+    List<Supplier> findByNameContainsAllIgnoreCase(String name);
 
-    Supplier findBySupplierId(Long supplierId);
+    Supplier findById(Long supplierId);
 }

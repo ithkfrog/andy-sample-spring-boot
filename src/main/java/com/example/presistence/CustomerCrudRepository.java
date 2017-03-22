@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * @author Andy Chau on 14/03/17.
  */
-public interface CustomerPersistence extends CrudRepository<Customer, Long> {
+public interface CustomerCrudRepository extends CrudRepository<Customer, Long> {
 
     List<Customer> findAll();
 
-    Customer findByCustomerId(Long customerId);
+    Customer findById(Long id);
 }

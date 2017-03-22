@@ -1,6 +1,6 @@
 package com.example.rest.parties;
 
-import com.example.presistence.CustomerPersistence;
+import com.example.presistence.CustomerCrudRepository;
 import com.example.rest.handler.RESTHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,20 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
     @Autowired
-    CustomerPersistence customerPersistence;
+    CustomerCrudRepository customerCrudRepository;
 
     @RequestMapping("/parties/customers")
     public ResponseEntity<?> customers() {
 
-        Object response = customerPersistence.findAll();
+        Object response = customerCrudRepository.findAll();
         return RESTHandler.buildOK(response);
     }
 
-    @RequestMapping("/parties/customers/{customerID}")
+    @RequestMapping("/parties/customers/{customerId}")
     public ResponseEntity<?> customer(
-            @PathVariable(value="customerID") Long customerID) {
+            @PathVariable(value="customerId") Long customerId) {
 
-        Object response = customerPersistence.findByCustomerId(customerID);
+        Object response = customerCrudRepository.findById(customerId);
 
         return RESTHandler.buildOK(response);
     }

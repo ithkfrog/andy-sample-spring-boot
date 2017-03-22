@@ -15,32 +15,43 @@ public class Supplier implements Serializable {
     @Id
     @Column(name = "supp_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long supplierId;
+    private Long id;
 
     @Column(name = "supp_name")
-    private String supplierName;
+    private String name;
 
-    protected Supplier() {
+    @Column(name = "supp_creation_date")
+    private String creationDate;
+
+    public Supplier() {
     }
 
-    public long getSupplierId() {
-        return supplierId;
+    public Long getSupplierId() {
+        return id;
     }
 
-    public void setSupplierId(long supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplierId(Long supplierId) {
+        this.id = supplierId;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public String getName() {
+        return name;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
     public String toString() {
-        return String.format("Supplier[id=%d, supplierName='%s']", supplierId, supplierName);
+        return String.format("Supplier[id=%d, name='%s']", id, name);
     }
 }

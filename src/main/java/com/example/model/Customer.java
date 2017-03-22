@@ -3,6 +3,7 @@ package com.example.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * @author Andy Chau on 14/03/17.
@@ -16,32 +17,44 @@ public class Customer implements Serializable {
     @Id
     @Column(name = "cust_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long customerId;
+    private Long id;
 
     @Column(name = "cust_name")
-    private String customerName;
+    private String name;
+
+    @Column(name = "cust_creation_date")
+    private Calendar creationDate;
+
 
     protected Customer() {
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getName() {
+        return name;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
     public String toString() {
-        return String.format("Customer[id=%d, customerName='%s']", customerId, customerName);
+        return String.format("Customer[id=%d, name='%s']", id, name);
     }
 }
